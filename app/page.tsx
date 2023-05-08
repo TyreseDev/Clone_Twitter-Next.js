@@ -163,7 +163,7 @@ export default function Home() {
 
       {/* notif if the user is not legged in */}
       {isModalCloseOnce && (
-        <div className="fixed bottom-0 left-0 right-0 z-50">
+        <div className="fixed bottom-0 left-0 right-0 z-40">
           <div className="bg-red-900 py-1 md:flex md:flex-row md:justify-evenly md:py-2">
             <div className="hidden md:block">
               <h3>Don’t miss what’s happening</h3>
