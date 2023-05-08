@@ -1,4 +1,4 @@
-export const HashTagLogo = ({ className }: any) => {
+export const HashTagIcon = ({ className }: any) => {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
       <g>

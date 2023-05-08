@@ -1,3 +1,6 @@
-export { SettingLogo } from "./icons/SettingLogo";
-export { HashTagLogo } from "./icons/HashTagLogo";
-export { SearchLogo } from "./icons/SearchLogo";
+export { SettingIcon } from "./icons/SettingIcon";
+export { HashTagIcon } from "./icons/HashTagIcon";
+export { SearchIcon } from "./icons/SearchIcon";
+export { Header } from "./Header/page";
+export { Modal } from "./Modal/page";
+export { CloseIcon } from "./icons/CloseIcon";

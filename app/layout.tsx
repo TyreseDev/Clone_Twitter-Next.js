@@ -1,6 +1,5 @@
 import "@/styles/global.css";
 import { Inter } from "next/font/google";
-import { SettingLogo, HashTagLogo, SearchLogo } from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,30 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} flex min-h-[100vh] md:justify-center`}
-      >
-        <header className="px-2 pt-4 md:pr-4 lg:pr-10 xl:pr-20">
-          <nav className="sticky top-[1rem]">
-            <ul className="flex flex-col items-center gap-7 md:items-start md:gap-5">
-              <li>logo</li>
-              <li>
-                <div className="flex w-min cursor-pointer items-center gap-3 hover:bg-[#F7F7F7]">
-                  <HashTagLogo className="hidden h-[25px] w-[25px] lg:block" />
-                  <SearchLogo className="h-[25px] w-[25px] lg:hidden" />
-                  <span className="hidden lg:block">Explore</span>
-                </div>
-              </li>
-              <li>
-                <div className="flex w-min cursor-pointer items-center gap-3 hover:bg-[#F7F7F7]">
-                  <SettingLogo className="h-[25px] w-[25px] lg:h-[25px] lg:w-[25px]" />
-                  <span className="hidden lg:block">Settings</span>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        {children}
+      <body className={`${inter.className}`}>
+        <div className="flex min-h-[100vh] md:justify-center">{children}</div>
       </body>
     </html>
   );
