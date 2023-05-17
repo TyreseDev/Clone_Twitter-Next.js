@@ -1,14 +1,24 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { CloseIcon } from "@/components/index";
+import {
+  CloseIcon,
+  TwitterIcon,
+  GoogleIcon,
+  LoadingIcon,
+} from "@/components/index";
 import { detectFirefox } from "@/utils/detectFirefox";
+import { timer } from "@/utils/timer";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 export const Modal = ({
   toggleModal,
   isModalCloseOnce,
   toggleModalClosedOnce,
 }: any): JSX.Element => {
+  const [isSignInModal, setIsSignInModal] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const toggleClose = () => {
     toggleModal(true);
     toggleModalClosedOnce();
@@ -36,13 +46,122 @@ export const Modal = ({
         {/* modal */}
         <div className="h-full w-full bg-white px-4 py-6 md:h-[650px] md:w-[600px] md:rounded-xl">
           {/* header modal */}
-          <div className="flex justify-between">
-            <button onClick={toggleClose}>
-              <CloseIcon className="h-[20px] w-[20px]" />
-            </button>
-            <div>logo</div>
-            <div></div>
-          </div>
+          {!isLoading && (
+            <div className="flex justify-between">
+              <button onClick={toggleClose}>
+                <CloseIcon className="h-[20px] w-[20px]" />
+              </button>
+              <div>
+                <TwitterIcon className="h-[30px] w-[30px]" />
+              </div>
+              <div></div>
+            </div>
+          )}
+          {isLoading && (
+            <div className="flex h-full w-full items-center justify-center pb-8">
+              <LoadingIcon className="h-[45px] w-[45px]" />
+            </div>
+          )}
+          {isSignInModal && !isLoading && (
+            <div className="mx-12 flex h-full flex-col items-center justify-center px-7 pb-12 md:mx-16 md:justify-start">
+              <h3 className="mb-7 w-full text-2xl font-semibold md:mt-10 md:text-3xl">
+                Sign in to twitter
+              </h3>
+              <button className="flex w-full items-center justify-center gap-2 rounded-xl border py-2 hover:bg-blue-50">
+                <span className="">
+                  <GoogleIcon className="h-[15px] w-[15px]" />
+                </span>
+                Sign in Google
+              </button>
+              <div className="my-3 flex w-full items-center">
+                <hr className="w-full" />
+                <span className="mx-3">or</span>
+                <hr className="w-full" />
+              </div>
+              <div className="mb-5  w-full">
+                <input
+                  type="text"
+                  className="w-full border px-2 py-3"
+                  placeholder="Phone, email, username"
+                />
+              </div>
+              <button className="mb-5 w-full rounded-xl border bg-black py-2 text-white hover:bg-black/75">
+                Next
+              </button>
+              <button className="mb-5 w-full rounded-xl border py-2 hover:bg-gray-200">
+                Forgot password?
+              </button>
+              <div className="w-full text-start">
+                <p className="text-sm text-gray-500">
+                  Don&apos;t have an account?{" "}
+                  <span
+                    className="cursor-pointer text-blue-400 hover:underline"
+                    onClick={async () => {
+                      setIsLoading(true);
+                      await timer(2000);
+                      setIsSignInModal(false);
+                      setIsLoading(false);
+                    }}
+                  >
+                    Sign up
+                  </span>
+                </p>
+              </div>
+            </div>
+          )}
+          {!isSignInModal && !isLoading && (
+            <div className="mx-12 flex h-full flex-col items-center justify-center px-7 pb-12 md:mx-16 md:justify-start">
+              <h3 className="mb-7 w-full text-2xl font-semibold md:mt-10 md:text-3xl">
+                Join Twitter today
+              </h3>
+              <button className="flex w-full items-center justify-center gap-2 rounded-xl border py-2 hover:bg-blue-50">
+                <span className="">
+                  <GoogleIcon className="h-[15px] w-[15px]" />
+                </span>
+                Sign up with Google
+              </button>
+              <div className="my-3 flex w-full items-center">
+                <hr className="w-full" />
+                <span className="mx-3">or</span>
+                <hr className="w-full" />
+              </div>
+              <button className="mb-5 w-full rounded-xl border bg-black py-2 text-white hover:bg-black/75">
+                Create account
+              </button>
+              <p className="mb-5 w-full text-start text-xs text-gray-500">
+                By signing up, you agree to the{" "}
+                <span className="cursor-pointer text-blue-400 hover:underline ">
+                  Terms of Service
+                </span>{" "}
+                and{" "}
+                <span className="cursor-pointer text-blue-400 hover:underline ">
+                  Privacy Policy
+                </span>
+                , including{" "}
+                <span className="cursor-pointer text-blue-400 hover:underline ">
+                  Cookie Use
+                </span>
+                .
+              </p>
+              <div className="w-full text-start">
+                <p className="text-sm text-gray-500">
+                  Have an account already?
+                  <span
+                    className="cursor-pointer text-blue-400 hover:underline"
+                    onClick={async () => {
+                      setIsLoading(true);
+                      await timer(2000);
+                      setIsSignInModal(true);
+                      setIsLoading(false);
+                    }}
+                  >
+                    {" "}
+                    Log in
+                  </span>
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
