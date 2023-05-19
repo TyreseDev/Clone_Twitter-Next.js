@@ -1,9 +1,2 @@
-export { SettingIcon } from "./icons/SettingIcon";
-export { HashTagIcon } from "./icons/HashTagIcon";
-export { SearchIcon } from "./icons/SearchIcon";
-export { TwitterIcon } from "./icons/TwitterIcon";
-export { GoogleIcon } from "./icons/GoggleIcon";
-export { LoadingIcon } from "./icons/LoadingIcon";
-export { Header } from "./Header/page";
-export { Modal } from "./Modal/page";
-export { CloseIcon } from "./icons/CloseIcon";
+export { Header } from "./Header";
+export { Modal } from "./Modal";

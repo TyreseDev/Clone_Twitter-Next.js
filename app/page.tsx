@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { SettingIcon } from "@/components";
+import { SettingIcon } from "@/components/icons";
 import { Header, Modal } from "@/components";
 import { detectFirefox } from "@/utils/detectFirefox";
 

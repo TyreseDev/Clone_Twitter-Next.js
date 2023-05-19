@@ -6,7 +6,7 @@ import {
   TwitterIcon,
   GoogleIcon,
   LoadingIcon,
-} from "@/components/index";
+} from "@/components/icons";
 import { detectFirefox } from "@/utils/detectFirefox";
 import { timer } from "@/utils/timer";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";

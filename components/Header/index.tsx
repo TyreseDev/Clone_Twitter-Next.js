@@ -1,5 +1,5 @@
 import React from "react";
-import { HashTagIcon, SettingIcon, SearchIcon } from "@/components/index";
+import { HashTagIcon, SettingIcon, SearchIcon } from "@/components/icons";
 
 export const Header = () => {
   return (
