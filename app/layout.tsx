@@ -18,10 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <div className="flex min-h-[100vh] md:justify-center">
-          <div id="portalTopModal"></div>
           <Header />
           {children}
-          <div id="portalLowModal"></div>
         </div>
       </body>
     </html>

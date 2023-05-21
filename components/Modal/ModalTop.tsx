@@ -20,6 +20,7 @@ export const ModalTop = ({
 }: any): JSX.Element => {
   const [isSignInModal, setIsSignInModal] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState<boolean>(false);
 
   const toggleClose = () => {
     toggleModal(true);
@@ -32,8 +33,17 @@ export const ModalTop = ({
       `${!detectFirefox() && "mr-[15px]"}`
     );
 
+    if (typeof window === "object") {
+      // weird way to fix <ab509da>
+      setIsClient(true);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!isClient) {
+    return <></>;
+  }
 
   return createPortal(
     <div
