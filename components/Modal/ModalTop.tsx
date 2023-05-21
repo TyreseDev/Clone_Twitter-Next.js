@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+
 import {
   CloseIcon,
   TwitterIcon,
@@ -11,7 +13,7 @@ import { detectFirefox } from "@/utils/detectFirefox";
 import { timer } from "@/utils/timer";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
-export const Modal = ({
+export const ModalTop = ({
   toggleModal,
   isModalCloseOnce,
   toggleModalClosedOnce,
@@ -33,7 +35,7 @@ export const Modal = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return createPortal(
     <div
       className={`fixed bottom-0 left-0 right-0 top-0 z-50 ${
         !isModalCloseOnce && "bg-white"
@@ -164,7 +166,8 @@ export const Modal = ({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

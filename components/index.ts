@@ -1,2 +1,3 @@
 export { Header } from "./Header";
-export { Modal } from "./Modal";
+export { ModalTop } from "./Modal/ModalTop";
+export { Aside } from "./Aside";
