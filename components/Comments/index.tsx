@@ -15,8 +15,6 @@ async function getData() {
   return res.json();
 }
 export const Comments = async () => {
-  console.log("comment component");
-
   const data = await getData();
 
   return (

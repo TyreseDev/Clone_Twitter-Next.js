@@ -19,7 +19,7 @@ export const ModalTop = ({
   toggleModalClosedOnce,
 }: any): JSX.Element => {
   const [isSignInModal, setIsSignInModal] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isClient, setIsClient] = useState<boolean>(false);
 
   const toggleClose = () => {
@@ -35,11 +35,17 @@ export const ModalTop = ({
 
     if (typeof window === "object") {
       // weird way to fix <ab509da>
-      setIsClient(true);
+      // bug become a features :)
       const tempBgWhite = document.getElementById("temp-bg-white");
-      setInterval(function () {
+
+      const startLoading = async () => {
+        setIsClient(true);
+        await timer(4500);
+
+        setIsLoading(false);
         tempBgWhite?.remove();
-      }, 2000);
+      };
+      startLoading();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

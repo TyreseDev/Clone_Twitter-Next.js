@@ -1,6 +1,7 @@
 import "@/styles/global.css";
 import { Inter } from "next/font/google";
 import { Header } from "@/components";
+import { TwitterIcon } from "@/components/icons";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,11 @@ export default function RootLayout({
         <div
           className="fixed bottom-0 left-0 right-0 top-0 z-50 bg-white"
           id="temp-bg-white"
-        />
+        >
+          <div className="flex h-full w-full items-center justify-center">
+            <TwitterIcon className="h-[70px] w-[70px]" />
+          </div>
+        </div>
         <div className="flex min-h-[100vh] md:justify-center">
           <Header />
           {children}
