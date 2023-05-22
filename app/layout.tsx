@@ -17,6 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
+        <div
+          className="fixed bottom-0 left-0 right-0 top-0 z-50 bg-white"
+          id="temp-bg-white"
+        />
         <div className="flex min-h-[100vh] md:justify-center">
           <Header />
           {children}

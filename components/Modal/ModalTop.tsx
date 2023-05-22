@@ -36,6 +36,10 @@ export const ModalTop = ({
     if (typeof window === "object") {
       // weird way to fix <ab509da>
       setIsClient(true);
+      const tempBgWhite = document.getElementById("temp-bg-white");
+      setInterval(function () {
+        tempBgWhite?.remove();
+      }, 2000);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
