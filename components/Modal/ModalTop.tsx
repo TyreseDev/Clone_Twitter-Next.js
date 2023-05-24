@@ -12,19 +12,27 @@ import {
 import { detectFirefox } from "@/utils/detectFirefox";
 import { timer } from "@/utils/timer";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useUiStore } from "@/store/uiStore";
 
-export const ModalTop = ({
-  toggleModal,
-  isModalCloseOnce,
-  toggleModalClosedOnce,
-}: any): JSX.Element => {
-  const [isSignInModal, setIsSignInModal] = useState<boolean>(true);
+export const ModalTop = ({ toggleModal }: any): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isClient, setIsClient] = useState<boolean>(false);
 
+  // store
+  const {
+    isModalLoaded,
+    isSignInModal,
+    isModalCloseOnce,
+    toggleIsModalLoaded,
+    toggleIsSignInModal,
+    toggleIsModalCloseOnce,
+  } = useUiStore<any>((states) => states);
+
   const toggleClose = () => {
+    if (!isModalCloseOnce) {
+      toggleIsModalCloseOnce();
+    }
     toggleModal(true);
-    toggleModalClosedOnce();
   };
 
   useEffect(() => {
@@ -34,18 +42,25 @@ export const ModalTop = ({
     );
 
     if (typeof window === "object") {
-      // weird way to fix <ab509da>
       // bug become a features :)
       const tempBgWhite = document.getElementById("temp-bg-white");
 
-      const startLoading = async () => {
+      const startLoading = async (timeBefore: number) => {
+        // weird way to fix <ab509da>
+        await timer(timeBefore);
         setIsClient(true);
-        await timer(4500);
+        await timer(2000);
 
         setIsLoading(false);
         tempBgWhite?.remove();
+
+        toggleIsModalLoaded();
       };
-      startLoading();
+      if (!isModalLoaded) {
+        startLoading(2500);
+      } else {
+        startLoading(0);
+      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -121,7 +136,7 @@ export const ModalTop = ({
                     onClick={async () => {
                       setIsLoading(true);
                       await timer(2000);
-                      setIsSignInModal(false);
+                      toggleIsSignInModal(false);
                       setIsLoading(false);
                     }}
                   >
@@ -173,7 +188,7 @@ export const ModalTop = ({
                     onClick={async () => {
                       setIsLoading(true);
                       await timer(2000);
-                      setIsSignInModal(true);
+                      toggleIsSignInModal(true);
                       setIsLoading(false);
                     }}
                   >

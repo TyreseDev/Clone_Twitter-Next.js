@@ -3,10 +3,13 @@ import { useState } from "react";
 import { detectFirefox } from "@/utils/detectFirefox";
 import { ModalTop } from "../Modal/ModalTop";
 import { ModalLow } from "../Modal/ModalLow";
+import { useUiStore } from "@/store/uiStore";
 
 export const Aside = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [isModalCloseOnce, setIsModalCloseOnce] = useState(false);
+
+  // store
+  const { isModalLoaded } = useUiStore<any>((states) => states);
 
   const toggleModal = (hideOverflow = false) => {
     setIsModalOpen((prev) => {
@@ -21,19 +24,10 @@ export const Aside = () => {
     }
   };
 
-  const toggleModalClosedOnce = () => {
-    setIsModalCloseOnce(true);
-  };
 
   return (
     <>
-      {isModalOpen && (
-        <ModalTop
-          toggleModal={toggleModal}
-          isModalCloseOnce={isModalCloseOnce}
-          toggleModalClosedOnce={toggleModalClosedOnce}
-        />
-      )}
+      {isModalOpen && <ModalTop toggleModal={toggleModal} />}
 
       <aside className="mt-4 hidden w-auto xl:block ">
         <div className="sticky top-[1rem] w-full md:max-w-[328px] lg:max-w-[348px]">
@@ -90,7 +84,7 @@ export const Aside = () => {
         </div>
       </aside>
 
-      {isModalCloseOnce && <ModalLow toggleModal={toggleModal} />}
+      {isModalLoaded && <ModalLow toggleModal={toggleModal} />}
     </>
   );
 };
