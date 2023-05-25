@@ -1,6 +1,8 @@
+/**
+ * This function return boolean that detect if the current browser is using firefox
+ */
 export const detectFirefox = () => {
   if (/Firefox/.test(navigator.userAgent)) {
-    // the browser is Firefox
     return true;
   }
   return false;
