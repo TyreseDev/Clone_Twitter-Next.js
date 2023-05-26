@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 
 import {
@@ -35,12 +35,14 @@ export const ModalTop = ({ toggleModal }: any): JSX.Element => {
     toggleModal(true);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.body.classList.add(
       "overflow-hidden",
       `${!detectFirefox() && "mr-[15px]"}`
     );
+  }, []);
 
+  useEffect(() => {
     if (typeof window === "object") {
       // bug become a features :)
       const tempBgWhite = document.getElementById("temp-bg-white");
