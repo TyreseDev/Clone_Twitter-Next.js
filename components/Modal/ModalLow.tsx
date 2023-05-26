@@ -17,6 +17,7 @@ export const ModalLow = ({ toggleModal }: any) => {
           <button
             className="max-h-min w-full whitespace-nowrap rounded-full border px-6 py-2 text-sm font-semibold hover:bg-[#34a3ec] md:py-0"
             onClick={() => {
+              document.body.classList.add("overflow-hidden");
               toggleModal();
               toggleIsSignInModal(true);
             }}
@@ -26,6 +27,7 @@ export const ModalLow = ({ toggleModal }: any) => {
           <button
             className="w-full whitespace-nowrap rounded-full border bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-white/80 md:py-0"
             onClick={() => {
+              document.body.classList.add("overflow-hidden");
               toggleModal();
               toggleIsSignInModal(false);
             }}

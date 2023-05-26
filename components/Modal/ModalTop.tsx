@@ -37,9 +37,9 @@ export const ModalTop = ({ toggleModal }: any): JSX.Element => {
 
   useLayoutEffect(() => {
     document.body.classList.add(
-      "overflow-hidden",
-      `${!detectFirefox() && "mr-[15px]"}`
+      !detectFirefox() && isModalLoaded ? "mr-[15px]" : "overflow-hidden"
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -87,7 +87,11 @@ export const ModalTop = ({ toggleModal }: any): JSX.Element => {
           {/* header modal */}
           {!isLoading && (
             <div className="flex justify-between">
-              <button onClick={toggleClose}>
+              <button
+                onClick={() => {
+                  toggleClose();
+                }}
+              >
                 <CloseIcon className="h-[20px] w-[20px]" />
               </button>
               <div>
