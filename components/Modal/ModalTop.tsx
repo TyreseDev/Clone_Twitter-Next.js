@@ -110,7 +110,13 @@ export const ModalTop = ({ toggleModal }: any): JSX.Element => {
               <h3 className="mb-7 w-full text-2xl font-semibold md:mt-10 md:text-3xl">
                 Sign in to twitter
               </h3>
-              <button className="flex w-full items-center justify-center gap-2 rounded-xl border py-2 hover:bg-blue-50">
+              <button
+                className="flex w-full items-center justify-center gap-2 rounded-xl border py-2 hover:bg-blue-50"
+                onClick={() => {
+                  console.log("Sign in");
+                  signIn("google");
+                }}
+              >
                 <span className="">
                   <GoogleIcon className="h-[15px] w-[15px]" />
                 </span>
@@ -157,7 +163,12 @@ export const ModalTop = ({ toggleModal }: any): JSX.Element => {
               <h3 className="mb-7 w-full text-2xl font-semibold md:mt-10 md:text-3xl">
                 Join Twitter today
               </h3>
-              <button className="flex w-full items-center justify-center gap-2 rounded-xl border py-2 hover:bg-blue-50">
+              <button
+                className="flex w-full items-center justify-center gap-2 rounded-xl border py-2 hover:bg-blue-50"
+                onClick={() => {
+                  console.log("Sign up");
+                }}
+              >
                 <span className="">
                   <GoogleIcon className="h-[15px] w-[15px]" />
                 </span>
